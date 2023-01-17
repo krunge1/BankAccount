@@ -8,73 +8,68 @@ class BankAccount:
     def __init__(self, name, int_rate, balance):
         self.name = name
         self.int_rate = int_rate
-        self.balance = balance
+        self.balance = round(balance,2)
 
-    def deposit (self, amount):
-        if amount > 0:
-            self.balance += amount
-            print(f"{self.name}: New balance is ${self.balance}")
-        else: 
-            self.balance = 0
-        return self
+    def deposit (self, account, amount):
+        if account == account:
+            if amount > 0:
+                self.balance += amount
+                print(f"{self.name}: New balance is ${self.balance}")
+            else: 
+                self.balance = 0
+            return  self
 
-    def withdraw(self, amount):
-        if BankAccount.can_withdraw (self.balance, amount):
-            # take balance less amount less 5
-            self.balance -= amount
-            print(f"{self.name}: New balance is ${self.balance}")
+    def withdraw(self, account, amount):
+        if account == account:
+            if BankAccount.can_withdraw (self.balance, amount):
+                # take balance less amount less 5
+                self.balance -= amount
+                print(f"{self.name}: New balance is ${self.balance}")
+                return self
+            else:
+                self.balance -= insufFee
+                print(f"{self.name}: Insufficent funds in account balance. An insufficient funds fee will be charged for ${insufFee}. Account balance after ${insufFee} is ${self.balance}")
             return self
-        else:
-            self.balance -= insufFee
-            print(f"{self.name}: Insufficent funds in account balance. An insufficient funds fee will be charged for ${insufFee}. Account balance after ${insufFee} is ${self.balance}")
-        return self
     
     @staticmethod
-    def can_withdraw (balance, amount):
-        if (balance - amount) < 0:
-            return False
-        else:
-            return True
+    def can_withdraw (balance, account, amount):
+        if account == account:
+            if (balance - amount) < 0:
+                return False
+            else:
+                return True
     
-    def display_account_info(self):
-        print(f"{self.name}: Your account balance currently is ${self.balance}")
-        return self 
+    def display_account_info(self, account):
+        if account == account:
+            print(f"{self.name}: Your account balance currently is ${self.balance}")
+            return self 
 
-    def yield_interest(self):
-        if self.balance > 0:
-            previousBalance = self.balance
-            self.balance = self.balance * (1 + self.int_rate)
-            print(f"{self.name}: You have earned ${self.balance - previousBalance} in interest this period. Your new balance is ${self.balance}")
-        return self
+    def yield_interest(self, account):
+        if account == account:
+            if self.balance > 0:
+                previousBalance = self.balance
+                self.balance = self.balance * (1 + self.int_rate)
+                print(f"{self.name}: You have earned ${round(self.balance - previousBalance,2)} in interest this period. Your new balance is ${self.balance}")
+            return self
     
 class User:
     global insufFee
     global int_rate
 
-    def __init__(self, name, email):
+    def __init__(self, name, email, account):
         self.name = name
         self.email = email
-        self.account = BankAccount('Checking', int_rate, 0)
-    
-    def makeDeposit (self, amount):
-        self.account = BankAccount(amount)
+        self.account = BankAccount(account, int_rate, 0)
 
-    def withdraw(self, amount):
-        self.account = BankAccount(amount)
+kyle = User('Kyle','krunge1@hotmail.com','Checking')
+kyle.account.deposit('Checking', 500)
+kyle.account.deposit('Checking', 300)
 
-    # def display_account_info(self):
-    #     self.account = BankAccount(self)
+# kyle.account.yield_interest()
+# kyle.account.display_account_info("Checking")
 
-    def yield_interest(self, amount):
-        self.account = BankAccount(amount)
+# print (kyle.email)
 
-kyle = User('Kyle','krunge1@hotmail.com')
-kyle.account.deposit(500)
-# kyle.account.withdraw(700)
-kyle.account.yield_interest()
-
-print (kyle.email)
-# print (kyle.account.balance)
 
 
 # kyle = BankAccount('Kyle', int_rate, 0)
