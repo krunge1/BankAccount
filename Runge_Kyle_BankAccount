@@ -1,7 +1,10 @@
 insufFee = 5
+int_rate = .03
 
 class BankAccount:
     global insufFee
+    global int_rate
+
     def __init__(self, name, int_rate, balance):
         self.name = name
         self.int_rate = int_rate
@@ -10,6 +13,7 @@ class BankAccount:
     def deposit (self, amount):
         if amount > 0:
             self.balance += amount
+            print(f"{self.name}: New balance is ${self.balance}")
         else: 
             self.balance = 0
         return self
@@ -43,10 +47,40 @@ class BankAccount:
             print(f"{self.name}: You have earned ${self.balance - previousBalance} in interest this period. Your new balance is ${self.balance}")
         return self
     
+class User:
+    global insufFee
+    global int_rate
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.account = BankAccount('Checking', int_rate, 0)
+    
+    def makeDeposit (self, amount):
+        self.account = BankAccount(amount)
+
+    def withdraw(self, amount):
+        self.account = BankAccount(amount)
+
+    # def display_account_info(self):
+    #     self.account = BankAccount(self)
+
+    def yield_interest(self, amount):
+        self.account = BankAccount(amount)
+
+kyle = User('Kyle','krunge1@hotmail.com')
+kyle.account.deposit(500)
+# kyle.account.withdraw(700)
+kyle.account.yield_interest()
+
+print (kyle.email)
+# print (kyle.account.balance)
 
 
-kyle = BankAccount('Kyle',.07, 0)
-moneyBags = BankAccount('`Senior Money Bags',.25, 1000000)
+# kyle = BankAccount('Kyle', int_rate, 0)
+#   Code establishes bank account for Kyle
+# moneyBags = BankAccount('`Senior Money Bags',.25, 1000000)
+    # Code establishes bank account for Senior Money Bags
 # print (kyle.balance)
 # kyle.deposit(50)
 # print(kyle.balance)
@@ -55,5 +89,7 @@ moneyBags = BankAccount('`Senior Money Bags',.25, 1000000)
 # kyle.display_account_info()
 # kyle.yield_interest()
 
-kyle.deposit(500).deposit(251).deposit(1000).withdraw(1500).yield_interest().display_account_info()
-moneyBags.deposit(500000).deposit(250001).withdraw(750000).withdraw(450000).withdraw(450000).withdraw(500000)
+# kyle.deposit(500).deposit(251).deposit(1000).withdraw(1500).yield_interest().display_account_info()
+    # runs the deposit sand withdrawy request for kyle account
+# moneyBags.deposit(500000).deposit(250001).withdraw(750000).withdraw(450000).withdraw(450000).withdraw(500000)
+    #runs depsosit and withdraw requests for moneybags account
