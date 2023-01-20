@@ -1,7 +1,10 @@
+import users
+
 insufFee = 5
 int_rate = .03
 
 class BankAccount:
+
     global insufFee
     global int_rate
 
@@ -30,14 +33,14 @@ class BankAccount:
                 self.balance -= insufFee
                 print(f"{self.name}: Insufficent funds in account balance. An insufficient funds fee will be charged for ${insufFee}. Account balance after ${insufFee} is ${self.balance}")
             return self
-    
+
     @staticmethod
     def can_withdraw (balance, amount):
         if (balance - amount) < 0:
             return False
         else:
             return True
-    
+
     def display_account_info(self, account):
         if account == account:
             print(f"{self.name}: Your account balance currently is ${self.balance}")
@@ -51,59 +54,16 @@ class BankAccount:
                 print(f"{self.name}: You have earned ${round(self.balance - previousBalance,2)} in interest this period. Your new balance is ${self.balance}")
             return self
 
-    # def transferFunds(self, amount, other_user):
+    def transfer_money(self, account, amount, other_user, other_user_account):
+        if account == account:
+            if BankAccount.can_withdraw (self.balance, amount):
+                # take balance less amount less 5
+                self.balance -= amount
+                print(f"{self.name}: New balance is ${self.balance}")
+                BankAccount.deposit(other_user, other_user_account, amount)
+                return self
+            else:
+                self.balance -= insufFee
+                print(f"{self.name}: Insufficent funds in account balance. An insufficient funds fee will be charged for ${insufFee}. Account balance after ${insufFee} is ${self.balance}")
+            return self
 
-    
-class User:
-    global insufFee
-    global int_rate
-    user_list = []
-
-    def __init__(self, name, email, account):
-        self.name = name
-        self.email = email
-        self.account = BankAccount(account, int_rate, 0)
-        self.user_list.append(self)
-
-
-    
-    def deposit(self, amount):
-        self.account.deposit(amount)
-
-    def withdraw(self, amount):
-        self.account.withdraw(amount)
-
-kyle = User('Kyle','krunge1@hotmail.com','Checking')
-kyle2 = User('Kyle', 'krunge1@hotmail.com', 'Savings')
-print()
-kyle.account.deposit('Checking', 500)
-
-# .deposit('Checking', 450).withdraw('Checking',400).display_account_info('Checking').yield_interest('Checking')
-# kyle.account.deposit('Savings', 1000).deposit('Savings', 450).withdraw('Savings',200).yield_interest('Savings')
-
-# kyle.account.withdraw('Checking', 300)
-# kyle.account.display_account_info('checking')
-
-# kyle.account.yield_interest()
-# kyle.account.display_account_info("Checking")
-
-# print (kyle.email)
-
-
-
-# kyle = BankAccount('Kyle', int_rate, 0)
-#   Code establishes bank account for Kyle
-# moneyBags = BankAccount('`Senior Money Bags',.25, 1000000)
-    # Code establishes bank account for Senior Money Bags
-# print (kyle.balance)
-# kyle.deposit(50)
-# print(kyle.balance)
-# kyle.withdraw(55)
-# kyle.withdraw(25)
-# kyle.display_account_info()
-# kyle.yield_interest()
-
-# kyle.deposit(500).deposit(251).deposit(1000).withdraw(1500).yield_interest().display_account_info()
-    # runs the deposit sand withdrawy request for kyle account
-# moneyBags.deposit(500000).deposit(250001).withdraw(750000).withdraw(450000).withdraw(450000).withdraw(500000)
-    #runs depsosit and withdraw requests for moneybags account
