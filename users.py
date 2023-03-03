@@ -10,6 +10,7 @@ class User:
         self.name = name
         self.email = email
         self.account = accounts.BankAccount(account, int_rate, 0)
+        self.account_num2 = []
 
     def makeDeposit(self, account_name, amount):
         accounts.BankAccount.deposit(self.account, account_name, amount)
